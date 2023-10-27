@@ -4,7 +4,7 @@ from PyQt5.QtSql import QSqlDatabase, QSqlQuery
 
 # Create the connection
 con = QSqlDatabase.addDatabase("QSQLITE")
-con.setDatabaseName("contacts.sqlite")
+con.setDatabaseName("recipe.sqlite3")
 
 # Open the connection
 if not con.open():
@@ -15,11 +15,13 @@ if not con.open():
 createTableQuery = QSqlQuery()
 createTableQuery.exec(
     """
-    CREATE TABLE contacts (
+    CREATE TABLE recipe (
         id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
-        name VARCHAR(40) NOT NULL,
-        job VARCHAR(50),
-        email VARCHAR(40) NOT NULL
+        title VARCHAR(40) NOT NULL,
+        ingredients VARCHAR(50),
+        instructions VARCHAR(50),
+        author VARCHAR(50),
+        source VARCHAR(40) NOT NULL
     )
     """
 )
