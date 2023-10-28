@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # foodie.py
 
-"""This module provides RP Contacts entry point script."""
+"""This module provides recipes entry point script."""
 
 from recipes.main import main
 
