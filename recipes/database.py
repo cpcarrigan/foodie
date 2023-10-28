@@ -4,7 +4,7 @@
 """This module provides a database connection."""
 
 from PyQt5.QtWidgets import QMessageBox
-from PyQt5.QtSql import QSqlDatabase, QSqlQuerq
+from PyQt5.QtSql import QSqlDatabase, QSqlQuery
 
 
 def _createRecipesTable():
