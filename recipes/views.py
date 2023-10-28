@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""This module provides views to manage the contacts table."""
+"""This module provides views to manage the recipes table."""
 
 from PyQt5.QtWidgets import (
     QAbstractItemView,
@@ -12,11 +12,19 @@ from PyQt5.QtWidgets import (
     QWidget,
 )
 
+
 class Window(QMainWindow):
     """Main Window."""
+
     def __init__(self, parent=None):
         """Initializer."""
-        # Snip...
+        super().__init__(parent)
+        self.setWindowTitle("Recipes")
+        self.resize(550, 250)
+        self.centralWidget = QWidget()
+        self.setCentralWidget(self.centralWidget)
+        self.layout = QHBoxLayout()
+        self.centralWidget.setLayout(self.layout)
 
         self.setupUI()
 
