@@ -12,6 +12,8 @@ from PyQt5.QtWidgets import (
     QWidget,
 )
 
+from .model import ContactsModel
+
 
 class Window(QMainWindow):
     """Main Window."""
@@ -25,6 +27,7 @@ class Window(QMainWindow):
         self.setCentralWidget(self.centralWidget)
         self.layout = QHBoxLayout()
         self.centralWidget.setLayout(self.layout)
+        self.contactsModel = ContactsModel()
 
         self.setupUI()
 
@@ -32,11 +35,13 @@ class Window(QMainWindow):
         """Setup the main window's GUI."""
         # Create the table view widget
         self.table = QTableView()
+        self.table.setModel(self.contactsModel.model)
         self.table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.table.resizeColumnsToContents()
         # Create buttons
         self.addButton = QPushButton("Add...")
         self.deleteButton = QPushButton("Delete")
+        self.viewButton = QPushButton("View")
         self.clearAllButton = QPushButton("Clear All")
         # Lay out the GUI
         layout = QVBoxLayout()
