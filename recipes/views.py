@@ -18,7 +18,7 @@ from PyQt5.QtWidgets import (
     QWidget,
 )
 
-from .model import ContactsModel
+from .model import RecipeModel
 
 
 class Window(QMainWindow):
@@ -33,7 +33,7 @@ class Window(QMainWindow):
         self.setCentralWidget(self.centralWidget)
         self.layout = QHBoxLayout()
         self.centralWidget.setLayout(self.layout)
-        self.contactsModel = ContactsModel()
+        self.recipeModel = RecipeModel()
 
         self.setupUI()
 
@@ -41,7 +41,7 @@ class Window(QMainWindow):
         """Setup the main window's GUI."""
         # Create the table view widget
         self.table = QTableView()
-        self.table.setModel(self.contactsModel.model)
+        self.table.setModel(self.recipeModel.model)
         self.table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.table.resizeColumnsToContents()
         # Create buttons
@@ -60,11 +60,11 @@ class Window(QMainWindow):
         self.layout.addLayout(layout)
 
 class AddDialog(QDialog):
-    """Add Contact dialog."""
+    """Add Recipe dialog."""
     def __init__(self, parent=None):
         """Initializer."""
         super().__init__(parent=parent)
-        self.setWindowTitle("Add Contact")
+        self.setWindowTitle("Add Recipe")
         self.layout = QVBoxLayout()
         self.setLayout(self.layout)
         self.data = None
@@ -72,7 +72,7 @@ class AddDialog(QDialog):
         self.setupUI()
 
     def setupUI(self):
-        """Setup the Add Contact dialog's GUI."""
+        """Setup the Add Recipe dialog's GUI."""
         # Create line edits for data fields
         self.nameField = QLineEdit()
         self.nameField.setObjectName("Name")
@@ -104,7 +104,7 @@ class AddDialog(QDialog):
                 QMessageBox.critical(
                     self,
                     "Error!",
-                    f"You must provide a contact's {field.objectName()}",
+                    f"You must provide a recipes's {field.objectName()}",
                 )
                 self.data = None  # Reset .data
                 return
@@ -114,8 +114,8 @@ class AddDialog(QDialog):
         super().accept()
     
     def openAddDialog(self):
-        """Open the Add Contact dialog."""
+        """Open the Add Recipe dialog."""
         dialog = AddDialog(self)
         if dialog.exec() == QDialog.Accepted:
-            self.contactsModel.addContact(dialog.data)
+            self.recipeModel.addRecipe(dialog.data)
             self.table.resizeColumnsToContents()
