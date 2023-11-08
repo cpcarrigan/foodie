@@ -30,3 +30,17 @@ class RecipeModel:
             self.model.setData(self.model.index(rows, column + 1), field)
         self.model.submitAll()
         self.model.select()
+    
+    def deleteRecipe(self, row):
+        """Remove a contact from the database."""
+        self.model.removeRow(row)
+        self.model.submitAll()
+        self.model.select()
+    
+    def clearRecipes(self):
+        """Remove all recipes in the database."""
+        self.model.setEditStrategy(QSqlTableModel.OnManualSubmit)
+        self.model.removeRows(0, self.model.rowCount())
+        self.model.submitAll()
+        self.model.setEditStrategy(QSqlTableModel.OnFieldChange)
+        self.model.select()
