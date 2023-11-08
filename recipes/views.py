@@ -50,12 +50,14 @@ class Window(QMainWindow):
         self.deleteButton = QPushButton("Delete")
         self.deleteButton.clicked.connect(self.deleteRecipe)
         self.viewButton = QPushButton("View")
+        self.viewButton.clicked.connect(self.viewRecipe)
         self.clearAllButton = QPushButton("Clear All")
         self.clearAllButton.clicked.connect(self.clearRecipes)
         # Lay out the GUI
         layout = QVBoxLayout()
         layout.addWidget(self.addButton)
         layout.addWidget(self.deleteButton)
+        layout.addWidget(self.viewButton)
         layout.addStretch()
         layout.addWidget(self.clearAllButton)
         self.layout.addWidget(self.table)
@@ -72,6 +74,14 @@ class Window(QMainWindow):
 
         if messageBox == QMessageBox.Ok:
             self.recipeModel.clearRecipes()
+
+    def viewRecipe(self):
+        """View the selected recipe from the database."""
+        row = self.table.currentIndex().row()
+        if row < 0:
+            return
+
+        self.recipeModel.viewRecipe(row)
 
     def deleteRecipe(self):
         """Delete the selected contact from the database."""
