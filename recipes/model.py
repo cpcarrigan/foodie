@@ -31,8 +31,15 @@ class RecipeModel:
         self.model.submitAll()
         self.model.select()
     
+    def viewRecipe(self, row):
+        """View a recipe from the database."""
+        self.model.fetchMore(row)
+        self.model.submitAll()
+        self.model.select()
+    
+    def clearRecipes(self):
     def deleteRecipe(self, row):
-        """Remove a contact from the database."""
+        """Remove a recipe from the database."""
         self.model.removeRow(row)
         self.model.submitAll()
         self.model.select()
