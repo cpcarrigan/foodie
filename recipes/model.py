@@ -37,7 +37,6 @@ class RecipeModel:
         self.model.submitAll()
         self.model.select()
     
-    def clearRecipes(self):
     def deleteRecipe(self, row):
         """Remove a recipe from the database."""
         self.model.removeRow(row)
