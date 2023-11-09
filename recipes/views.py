@@ -5,6 +5,7 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (
     QAbstractItemView,
+    QCalendarWidget,
     QDialog,
     QDialogButtonBox,
     QFormLayout,
@@ -14,6 +15,7 @@ from PyQt5.QtWidgets import (
     QMessageBox,
     QPushButton,
     QTableView,
+    QTextEdit,
     QVBoxLayout,
     QWidget,
 )
@@ -126,22 +128,22 @@ class AddDialog(QDialog):
         self.nameField.setObjectName("Name")
         self.authorField = QLineEdit()
         self.authorField.setObjectName("author")
-        self.dateField = QLineEdit()
-        self.dateField.setObjectName("Date")
-        self.ingredientsField = QLineEdit()
+        self.ingredientsField = QTextEdit()
         self.ingredientsField.setObjectName("Ingredients")
-        self.directionsField = QLineEdit()
+        self.directionsField = QTextEdit()
         self.directionsField.setObjectName("Directions")
         self.sourceField = QLineEdit()
         self.sourceField.setObjectName("Source")
+        self.dateField = QCalendarWidget()
+        self.dateField.setObjectName("Date")
         # Lay out the data fields
         layout = QFormLayout()
         layout.addRow("Name:", self.nameField)
         layout.addRow("Author:", self.authorField)
-        layout.addRow("Date:", self.dateField)
         layout.addRow("Ingredients:", self.ingredientsField)
         layout.addRow("Directions:", self.directionsField)
         layout.addRow("Source:", self.sourceField)
+        layout.addRow("Date:", self.dateField)
         self.layout.addLayout(layout)
         # Add standard buttons to the dialog and connect them
         self.buttonsBox = QDialogButtonBox(self)
