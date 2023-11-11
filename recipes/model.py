@@ -33,8 +33,8 @@ class RecipeModel:
     
     def viewRecipe(self, row):
         """View a recipe from the database."""
-        self.model.fetchMore(row)
-        self.model.submitAll()
+        self.model.selectRow(row)
+        # self.model.submitAll()
         self.model.select()
     
     def deleteRecipe(self, row):
